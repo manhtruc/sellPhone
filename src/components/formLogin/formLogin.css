@@ -1,0 +1,27 @@
+.form-login {
+    width: 400px;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 1px solid #ebebeb;
+    background-color: #FFCC33;
+}
+
+.button-login{
+    display: block !important;
+    width: 20%;
+    margin: 10px auto !important;
+}
+
+.m-auto{
+text-align: center;
+margin: 20px 0;
+}
+
+.wrap-button {
+    display: flex;
+    justify-content: space-between;
+}

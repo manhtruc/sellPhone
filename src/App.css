@@ -35,4 +35,72 @@
   to {
     transform: rotate(360deg);
   }
+
+}
+
+.MuiDrawer-paper {
+  height: auto!important;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  
+}
+
+.ant-form.form-dang-ky {
+  width: 50vw;
+  margin: 100px auto !important;
+  background-color: #deb887;
+  padding: 30px !important;
+}
+
+.ant-form h2{
+  margin-bottom: 20px;
+}
+
+.ant-btn.dangnhap {
+  border-radius: 30px ;
+  height: 40px ;
+  margin-left: 20px;
+  margin-top: 20px;
+
+}
+
+.ant-btn.addNew {
+  border-radius: 5px !important;
+  margin: 20px 0;
+}
+
+.ant-list-item {
+  border-bottom: none !important;
+}
+
+.anticon svg {
+  font-size: 1.2rem;
+}
+
+.search-product{
+  display:block !important;
+  width: 25vw !important;
+  margin-bottom: 20px !important;
+}
+
+.custom-link {
+  color: #ffffffa6 !important;
+  opacity: 0.7;
+
+}
+
+.custom-link.active{
+  opacity: 1;
+}
+
+.custom-icon{
+  color: #ffffffa6;
+  margin-right: 12px;
+}
+
+.active {
+  color: #FFCC66 !important;
 }

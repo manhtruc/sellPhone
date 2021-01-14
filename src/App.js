@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import {
+  BrowserRouter as Router
+} from "react-router-dom";
+import { loginFailed, loginSuccess } from "./actions/loginAction";
 import './App.css';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import AuthNavigator from "./router/AuthNavigator";
+import Navigator from './router/Navigator';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App() {
+function App({ loginStatus, loginSuccess, loginFailed }) {
+
+  useEffect(() => {
+    const isLoginStorage = localStorage.getItem('loginStatus');
+    if (isLoginStorage === "true")
+      loginSuccess();
+    else loginFailed()
+  }, [loginStatus])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app-root'>
+      <Router>
+        {loginStatus ? <>
+          <Header />
+          <Navigator />
+          <Footer />
+        </> :
+          <AuthNavigator />}
+        <ToastContainer
+          autoClose={2000}
+        />
+      </Router>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loginStatus: state.login.status
+  }
+}
+
+export default connect(mapStateToProps, { loginSuccess, loginFailed })(App);

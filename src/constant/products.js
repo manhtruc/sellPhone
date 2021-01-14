@@ -1,0 +1,22 @@
+
+// fetch api 
+export const FETCH_LIST_PRODUCT = 'FETCH_LIST_PRODUCT'
+export const FETCH_LIST_PRODUCT_SUCCESS = 'FETCH_LIST_PRODUCT_SUCCESS'
+export const FETCH_LIST_PRODUCT_FAILED = 'FETCH_LIST_PRODUCT_FAILED'
+
+// cart 
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const DELETE_PRODUCT_IN_CART = 'DELETE_PRODUCT_IN_CART'
+export const UPDATE_QUANTITY_PRODUCT = "UPDATE_QUANTITY_PRODUCT"
+export const INIT_PRODUCT_IN_CART = 'INIT_PRODUCT_IN_CART'
+export const CLOSE_THE_ORDER = 'CLOSE_THE_ORDER'
+
+
+// constant api 
+export const API_ENDPOINT_PRODUCT = 'https://5fc8508e2af77700165ad2e2.mockapi.io'
+
+export const STATUS = {
+    SUCCESS: 200,
+    CREATE: 201,
+    UPDATE: 202
+}
