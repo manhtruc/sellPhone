@@ -2,7 +2,8 @@ const styles = () => ({
     rootCard: {
         flexGrow: 1,
         marginTop: 20,
-        paddingBottom: 180
+        paddingBottom: 180,
+        alignItems: 'center'
     },
     media: {
         height: 240,
@@ -15,7 +16,7 @@ const styles = () => ({
     },
     navLink: {
         textDecoration: 'none'
-    }
+    },
 })
 
 export default styles

@@ -1,17 +1,21 @@
-import { Container, withStyles } from '@material-ui/core';
+import { Button, Container, withStyles } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { addToCart, fetchListProduct, initProductInCart } from '../../actions/productAction';
 import styles from './main-styles';
+import MainItem from './MainItem';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
 const Main = ({ classes, fetchListProduct, listProduct, addToCart, initProductInCart }) => {
+    const [indexActive, setIndexActive] = useState(0)
 
     useEffect(() => {
         fetchListProduct()
@@ -51,40 +55,57 @@ const Main = ({ classes, fetchListProduct, listProduct, addToCart, initProductIn
     //     addToCart(product.id)
     // }
 
+    const handleMoving = (direction, list) => {
+        if (direction === 'right') {
+            setIndexActive(indexActive < list.length - 1 ? indexActive + 1 : 0)
+        }
+        if (direction === 'left') {
+            setIndexActive(indexActive > 0 ? indexActive - 1 : list.length - 1)
+        }
+
+    }
+
     return (
         <div className={classes.rootCard}>
-            <Container>
+            <Container className={classes.rootCard} >
                 <Grid container spacing={3}>
                     {listProduct.map((product, index) => (
-                        <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                            <Card >
-                                <CardActionArea>
-                                    <NavLink to={`/${ChangeToSlug(product.code)}.${product.id}.html`}>
-                                        <img className={classes.img} alt='img' src={product.image} />
-                                    </NavLink>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            <NavLink className={classes.navLink} to={`/${ChangeToSlug(product.code)}.${product.id}.html`}>
-                                                {product.code}
-                                            </NavLink>
-                                        </Typography>
-                                        <Typography>
-                                            {product.price} $
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                {/* <CardActions>
-                                    <Button size="small" variant='outlined' color="primary">
-                                        Mua
-                                    </Button>
-                                    <Button onClick={() => handleAddToCart(product)} size="small" variant='outlined' color="primary">
-                                        Thêm vào giỏ hàng
-                                    </Button>
-                                </CardActions> */}
-                            </Card>
-                        </Grid>
+                        <MainItem key={product.id}
+                            indexActive={index == indexActive}
+                            product={product}
+                            ChangeToSlug={ChangeToSlug}
+                        />
+                        // <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+                        //     <Card >
+                        //         <CardActionArea>
+                        //             <NavLink to={`/${ChangeToSlug(product.code)}.${product.id}.html`}>
+                        //                 <img className={classes.img} alt='img' src={product.image} />
+                        //             </NavLink>
+                        //             <CardContent>
+                        //                 <Typography gutterBottom variant="h5" component="h2">
+                        //                     <NavLink className={classes.navLink} to={`/${ChangeToSlug(product.code)}.${product.id}.html`}>
+                        //                         {product.code}
+                        //                     </NavLink>
+                        //                 </Typography>
+                        //                 <Typography>
+                        //                     {product.price} $
+                        //                 </Typography>
+                        //             </CardContent>
+                        //         </CardActionArea>
+                        //         <CardActions>
+                        //             <Button size="small" variant='outlined' color="primary">
+                        //                 Mua
+                        //             </Button>
+                        //             <Button onClick={() => handleAddToCart(product)} size="small" variant='outlined' color="primary">
+                        //                 Thêm vào giỏ hàng
+                        //             </Button>
+                        //         </CardActions>
+                        //     </Card>
+                        // </Grid>
                     ))}
                 </Grid>
+                <Button onClick={() => handleMoving('left', listProduct)}><ArrowBackIosIcon /></Button>
+                <Button onClick={() => handleMoving('right', listProduct)}><ArrowForwardIosIcon /></Button>
             </Container>
         </div>
     );
